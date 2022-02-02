@@ -1,0 +1,47 @@
+<div class="card col-6 mt-3 mx-auto">
+  <div class="card-header card-header-size">
+    <i class="fa fa-plus-circle mr-2"></i> <span class="font-weight-bold">Add new Product</span>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="productFormGroup">
+      <div class="row form-group">
+        <div class="col form-group col-6">
+          <label class="form-input-label">ID :</label>
+          <input type="text" formControlName="id" readonly class="form-control"/>
+        </div>
+        <div class="col form-group col-6">
+          <label class="form-input-label">Name * :</label>
+          <input type="text" formControlName="name" placeholder="please enter product name" class="form-control"/>
+          <div *ngIf="productFormGroup.controls.name.errors && productFormGroup.controls.name.touched">
+            <small class="form-error-message" *ngIf="productFormGroup.controls.name.errors.required">name is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label class="form-input-label">Quantity * :</label>
+          <input type="text" formControlName="quantity" placeholder="please enter product quantity" class="form-control"/>
+        </div>
+        <div class="col form-group">
+          <label class="form-input-label">Price * :</label>
+          <input type="text" formControlName="price" placeholder="please enter product price" class="form-control"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form-group">
+          <label class="form-input-label">Available * :</label>
+          <input type="checkbox" formControlName="available" class="form-check"/>
+        </div>
+        <div class="col form-group">
+          <label class="form-input-label">Selected * :</label>
+          <input type="checkbox" formControlName="selected" class="form-check"/>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-success" (click)="updateProduct()">Update</button>
+        <button class="btn btn-warning ml-2" (click)="resetForm()">Reset</button>
+        <button class="btn btn-danger ml-2" (click)="closeForm()">Close</button>
+      </div>
+    </form>
+  </div>
+</div>

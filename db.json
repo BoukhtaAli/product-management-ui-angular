@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Phone",
+      "price": 1000,
+      "quantity": "30",
+      "available": false,
+      "selected": true
+    },
+    {
+      "id": 2,
+      "name": "Tablet",
+      "price": 1400,
+      "quantity": 20,
+      "selected": false,
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Watch",
+      "price": 600,
+      "quantity": 410,
+      "selected": true,
+      "available": false
+    },
+    {
+      "id": 4,
+      "name": "Car",
+      "price": "10000",
+      "quantity": 2,
+      "available": true,
+      "selected": false
+    }
+  ]
+}
