@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../../services/products.service";
 import {Product} from "../../../model/product";
 import {Observable, of} from "rxjs";
@@ -15,8 +15,6 @@ import {NotyfService} from "../../../mixins/notyf/notyf.service";
 export class ProductsComponent implements OnInit {
 
   productList$ ?: Observable<AppDataState<Product[]>>;
-
-  DataStateEnum = DataStateEnum;
 
   constructor(private productService : ProductsService, private router: Router, private notyfService: NotyfService) { }
 
@@ -78,7 +76,7 @@ export class ProductsComponent implements OnInit {
   }
 
   updateProduct(id: number) {
-    this.router.navigate(["/updateProduct",id]);
+    this.router.navigate(["/updateProduct", id]);
   }
 
   onEvent($event: ProductActionEvent) {
@@ -97,6 +95,15 @@ export class ProductsComponent implements OnInit {
         break;
       case ProductEventEnum.SEARCH_PRODUCT_BY_NAME:
         this.search($event.payload.keyword);
+        break;
+      case ProductEventEnum.UPDATE_PRODUCT:
+        this.updateProduct($event.payload);
+        break;
+      case ProductEventEnum.DELETE_PRODUCT:
+        this.deleteProduct($event.payload);
+        break;
+      case ProductEventEnum.UPDATE_PRODUCT_SELECT:
+        this.updateProductSelect($event.payload);
         break;
     }
   }

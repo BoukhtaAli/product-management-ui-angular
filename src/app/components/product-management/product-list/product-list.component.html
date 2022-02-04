@@ -1,0 +1,49 @@
+<div class="container" *ngIf="productList$ | async as result" [ngSwitch]="result.dataState">
+  <div class="mt-3">
+    <div class="container text-center my-auto" *ngSwitchCase="DataStateEnum.LOADING">
+      <div class="spinner-border text-info" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+    </div>
+    <div class="container" *ngSwitchCase="DataStateEnum.LOADED">
+      <table class="table table-bordered table-striped text-center">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Available</th>
+          <th>Selected</th>
+          <th colspan="3">Actions</th>
+        </tr>
+        <tr *ngFor="let product of result.data">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.quantity}}</td>
+          <td>
+            <i class="fa fa-check-circle text-success" *ngIf="product.available"></i>
+            <i class="fa fa-times-circle text-danger" *ngIf="!product.available"></i>
+          </td>
+          <td>
+            <button type="button" [ngClass]="product.selected ? 'btn btn-success' : 'btn btn-danger' " (click)="updateProductSelect(product)">
+              <span *ngIf="!product.selected">Select</span>
+              <span *ngIf="product.selected">UnSelect</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteProduct(product.id)">
+              <span class="fa fa-trash"></span>
+            </button>
+            <button type="button" class="btn btn-warning ml-2" (click)="updateProduct(product.id)">
+              <span class="fa fa-edit"></span>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="container" *ngSwitchCase="DataStateEnum.ERROR">
+      <div class="text-danger font-weight-bold"> {{result.errorMessage}} </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,10 @@ export enum ProductEventEnum {
   GET_AVAILABLE_PRODUCTS = "Get Only Available Products",
   GET_SELECTED_PRODUCTS = "Get Only Selected Products",
   ADD_PRODUCT = "Add New Product",
-  SEARCH_PRODUCT_BY_NAME = "Search Product By Name"
+  SEARCH_PRODUCT_BY_NAME = "Search Product By Name",
+  UPDATE_PRODUCT = "Update Existing Product",
+  DELETE_PRODUCT = "Delete Existing Product",
+  UPDATE_PRODUCT_SELECT = "Update Product Select Data",
 }
 
 export interface ProductActionEvent {
