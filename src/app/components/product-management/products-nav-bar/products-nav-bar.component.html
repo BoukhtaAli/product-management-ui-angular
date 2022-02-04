@@ -1,0 +1,24 @@
+<div class="container card-header col-12">
+  <div class="row">
+    <div class="col col-7">
+      <ul class="navbar navbar-nav">
+        <li>
+          <button (click)="getProducts()" class="btn btn-sm btn-outline-info mr-2 ml-2">All Products</button>
+          <button (click)="getSelectedProducts()" class="btn btn-sm btn-outline-info mr-2 ml-2">Only Selected</button>
+          <button (click)="getAvailableProducts()" class="btn btn-sm btn-outline-info mr-2 ml-2">Only Available</button>
+          <button (click)="addNewProduct()" class="btn btn-sm btn-outline-success mr-2 ml-2">Add New Product</button>
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <ul class="navbar navbar-nav ml-auto">
+        <form #f="ngForm" (ngSubmit)="search(f.value)" class="form-inline">
+          <div class="form-group">
+            <input ngModel name="keyword" type="text" placeholder="Search By Name" class="form-control mr-2"/>
+            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </form>
+      </ul>
+    </div>
+  </div>
+</div>
