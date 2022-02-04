@@ -13,6 +13,7 @@ import { ProductUpdateComponent } from './components/product-management/product-
 import {NOTYF, notyfFactory} from "./mixins/notyf/notyf.token";
 import { ProductsNavBarComponent } from './components/product-management/products-nav-bar/products-nav-bar.component';
 import { ProductListComponent } from './components/product-management/product-list/product-list.component';
+import { ProductItemComponent } from './components/product-management/product-list/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductListComponent } from './components/product-management/product-li
     ProductAddComponent,
     ProductUpdateComponent,
     ProductsNavBarComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,

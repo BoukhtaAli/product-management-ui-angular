@@ -31,4 +31,19 @@ export class ProductListComponent implements OnInit {
   updateProduct(id: number) {
     this.productEventEmitter.emit({type: ProductEventEnum.UPDATE_PRODUCT, payload: id});
   }
+
+  onEvent($event: ProductActionEvent) {
+
+    switch ($event.type){
+      case ProductEventEnum.DELETE_PRODUCT:
+        this.deleteProduct($event.payload);
+        break;
+      case ProductEventEnum.UPDATE_PRODUCT:
+        this.updateProduct($event.payload);
+        break;
+      case ProductEventEnum.UPDATE_PRODUCT_SELECT:
+        this.updateProductSelect($event.payload);
+        break;
+    }
+  }
 }
