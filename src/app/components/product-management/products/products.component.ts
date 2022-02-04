@@ -3,7 +3,7 @@ import {ProductsService} from "../../../services/products.service";
 import {Product} from "../../../model/product";
 import {Observable, of} from "rxjs";
 import {catchError, map, startWith} from "rxjs/operators";
-import {AppDataState, DataStateEnum} from "../../../state/appData.state";
+import {AppDataState, DataStateEnum, ProductActionEvent, ProductEventEnum} from "../../../state/appData.state";
 import {Router} from "@angular/router";
 import {NotyfService} from "../../../mixins/notyf/notyf.service";
 
@@ -48,8 +48,8 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  search(form: any) {
-    this.productList$ =  this.productService.searchProducts(form.keyword).pipe(
+  search(name: string) {
+    this.productList$ =  this.productService.searchProducts(name).pipe(
       map(data => ({dataState : DataStateEnum.LOADED ,data: data })),
       startWith({dataState : DataStateEnum.LOADING}),
       catchError(error =>of({dataState: DataStateEnum.ERROR, errorMessage: error.message}))
@@ -79,5 +79,25 @@ export class ProductsComponent implements OnInit {
 
   updateProduct(id: number) {
     this.router.navigate(["/updateProduct",id]);
+  }
+
+  onEvent($event: ProductActionEvent) {
+    switch ($event.type) {
+      case ProductEventEnum.GET_PRODUCT:
+        this.getProducts();
+        break;
+      case ProductEventEnum.GET_SELECTED_PRODUCTS:
+        this.getSelectedProducts();
+        break;
+      case ProductEventEnum.GET_AVAILABLE_PRODUCTS:
+        this.getAvailableProducts();
+        break;
+      case ProductEventEnum.ADD_PRODUCT:
+        this.addNewProduct();
+        break;
+      case ProductEventEnum.SEARCH_PRODUCT_BY_NAME:
+        this.search($event.payload.keyword);
+        break;
+    }
   }
 }

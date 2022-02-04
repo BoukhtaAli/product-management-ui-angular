@@ -31,6 +31,14 @@
       "quantity": 2,
       "available": true,
       "selected": false
+    },
+    {
+      "name": "Ball",
+      "price": "10",
+      "quantity": "1500",
+      "available": false,
+      "selected": true,
+      "id": 5
     }
   ]
 }

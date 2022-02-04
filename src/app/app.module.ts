@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProductAddComponent } from './components/product-management/product-add/product-add.component';
 import { ProductUpdateComponent } from './components/product-management/product-update/product-update.component';
 import {NOTYF, notyfFactory} from "./mixins/notyf/notyf.token";
+import { ProductsNavBarComponent } from './components/product-management/products-nav-bar/products-nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {NOTYF, notyfFactory} from "./mixins/notyf/notyf.token";
     ProductsComponent,
     HomeComponent,
     ProductAddComponent,
-    ProductUpdateComponent
+    ProductUpdateComponent,
+    ProductsNavBarComponent
   ],
   imports: [
     BrowserModule,
