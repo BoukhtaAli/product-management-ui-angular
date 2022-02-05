@@ -16,7 +16,7 @@
           <th>Selected</th>
           <th colspan="3">Actions</th>
         </tr>
-        <app-product-item (productEventEmitter)="onEvent($event)"  [product]="product" *ngFor="let product of result.data" style="display: contents;"></app-product-item>
+        <app-product-item [product]="product" *ngFor="let product of result.data" style="display: contents;"></app-product-item>
       </table>
     </div>
     <div class="container" *ngSwitchCase="DataStateEnum.ERROR">

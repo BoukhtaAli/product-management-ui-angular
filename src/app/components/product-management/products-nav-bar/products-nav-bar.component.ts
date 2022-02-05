@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ProductActionEvent, ProductEventEnum} from "../../../state/appData.state";
+import {Component, OnInit} from '@angular/core';
+import {ProductEventEnum} from "../../../state/appData.state";
+import {ProductEventService} from "../../../state/productEvent.service";
 
 @Component({
   selector: 'app-products-nav-bar',
@@ -8,30 +9,28 @@ import {ProductActionEvent, ProductEventEnum} from "../../../state/appData.state
 })
 export class ProductsNavBarComponent implements OnInit {
 
-  constructor() { }
-
-  @Output() eventEmitter : EventEmitter<ProductActionEvent> = new EventEmitter<any>();
+  constructor(private productEventService: ProductEventService) { }
 
   ngOnInit(): void {
   }
 
   getProducts() {
-    this.eventEmitter.emit({type: ProductEventEnum.GET_PRODUCT, payload: null});
+    this.productEventService.publishEvent({type: ProductEventEnum.GET_PRODUCT, payload: null});
   }
 
   getSelectedProducts() {
-    this.eventEmitter.emit({type: ProductEventEnum.GET_SELECTED_PRODUCTS, payload: null});
+    this.productEventService.publishEvent({type: ProductEventEnum.GET_SELECTED_PRODUCTS, payload: null});
   }
 
   getAvailableProducts() {
-    this.eventEmitter.emit({type: ProductEventEnum.GET_AVAILABLE_PRODUCTS, payload: null});
+    this.productEventService.publishEvent({type: ProductEventEnum.GET_AVAILABLE_PRODUCTS, payload: null});
   }
 
   addNewProduct() {
-    this.eventEmitter.emit({type : ProductEventEnum.ADD_PRODUCT, payload: null});
+    this.productEventService.publishEvent({type: ProductEventEnum.ADD_PRODUCT, payload: null});
   }
 
   search(value: string) {
-    this.eventEmitter.emit({type : ProductEventEnum.SEARCH_PRODUCT_BY_NAME , payload : value});
+    this.productEventService.publishEvent({type: ProductEventEnum.SEARCH_PRODUCT_BY_NAME, payload: value});
   }
 }

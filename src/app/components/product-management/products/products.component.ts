@@ -6,6 +6,7 @@ import {catchError, map, startWith} from "rxjs/operators";
 import {AppDataState, DataStateEnum, ProductActionEvent, ProductEventEnum} from "../../../state/appData.state";
 import {Router} from "@angular/router";
 import {NotyfService} from "../../../mixins/notyf/notyf.service";
+import {ProductEventService} from "../../../state/productEvent.service";
 
 @Component({
   selector: 'app-products',
@@ -16,10 +17,16 @@ export class ProductsComponent implements OnInit {
 
   productList$ ?: Observable<AppDataState<Product[]>>;
 
-  constructor(private productService : ProductsService, private router: Router, private notyfService: NotyfService) { }
+  constructor(private productService : ProductsService,
+              private router: Router,
+              private notyfService: NotyfService,
+              private productEventService: ProductEventService) { }
 
   ngOnInit(): void {
     this.getProducts();
+    this.productEventService.productEventSubjectObservable.subscribe((actionEvent : ProductActionEvent) => {
+      this.onEvent(actionEvent);
+    });
   }
 
   getProducts() {
@@ -65,8 +72,8 @@ export class ProductsComponent implements OnInit {
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe(
       data => {
-        this.getProducts();
         this.notyfService.showNotyf("success", "product has been delete!");
+        this.ngOnInit();
       }
     )
   }
