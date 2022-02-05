@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductsService} from "../../../services/products.service";
 import {Router} from "@angular/router";
 import {NotyfService} from "../../../mixins/notyf/notyf.service";
+import {ProductEventService} from "../../../state/productEvent.service";
+import {ProductEventEnum} from "../../../state/appData.state";
 
 @Component({
   selector: 'app-product-add',
@@ -19,7 +21,11 @@ export class ProductAddComponent implements OnInit {
                                   selected: [true, Validators.required]
                                 });
 
-  constructor(private formBuilder : FormBuilder, private productService: ProductsService, private router : Router, private notyfService : NotyfService) { }
+  constructor(private formBuilder : FormBuilder,
+              private productService: ProductsService,
+              private router : Router,
+              private notyfService : NotyfService,
+              private productEventService: ProductEventService) { }
 
   ngOnInit(): void {
   }
@@ -36,6 +42,7 @@ export class ProductAddComponent implements OnInit {
       data => {
         this.router.navigate(["/products"]);
         this.notyfService.showNotyf("success", "product has been added!");
+        this.productEventService.publishEvent({type : ProductEventEnum.PRODUCT_ADDED, payload: null});
       }
     );
   }

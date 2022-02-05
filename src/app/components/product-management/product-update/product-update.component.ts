@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../../services/products.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NotyfService} from "../../../mixins/notyf/notyf.service";
+import {ProductEventService} from "../../../state/productEvent.service";
+import {ProductEventEnum} from "../../../state/appData.state";
 
 @Component({
   selector: 'app-product-update',
@@ -21,7 +23,11 @@ export class ProductUpdateComponent implements OnInit {
     selected: [true, Validators.required]
   });
 
-  constructor(private route : ActivatedRoute, private productService : ProductsService, private formBuilder: FormBuilder, private router: Router, private notyfService : NotyfService) { }
+  constructor(private route : ActivatedRoute,
+              private productService : ProductsService,
+              private formBuilder: FormBuilder,
+              private router: Router, private notyfService : NotyfService,
+              private productEventService: ProductEventService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -58,6 +64,7 @@ export class ProductUpdateComponent implements OnInit {
       data => {
         this.router.navigate(["/products"]);
         this.notyfService.showNotyf("success", "product has been updated!");
+        this.productEventService.publishEvent({type : ProductEventEnum.PRODUCT_UPDATED, payload: null});
       }
     );
   }

@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(
       data => {
         this.notyfService.showNotyf("success", "product has been delete!");
-        this.ngOnInit();
+        this.getProducts();
       }
     )
   }

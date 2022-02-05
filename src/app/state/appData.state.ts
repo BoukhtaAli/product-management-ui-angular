@@ -23,6 +23,8 @@ export enum ProductEventEnum {
   UPDATE_PRODUCT = "Update Existing Product",
   DELETE_PRODUCT = "Delete Existing Product",
   UPDATE_PRODUCT_SELECT = "Update Product Select Data",
+  PRODUCT_UPDATED = "Product Updated",
+  PRODUCT_ADDED = "Product Added"
 }
 
 export interface ProductActionEvent {

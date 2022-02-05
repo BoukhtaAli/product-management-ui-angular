@@ -3,18 +3,26 @@
     {
       "id": 1,
       "name": "Phone",
-      "price": "100",
+      "price": "1020",
       "quantity": "30",
       "available": false,
       "selected": false
     },
     {
-      "id": 2,
-      "name": "Tablet",
-      "price": 1400,
-      "quantity": 20,
+      "name": "ergege",
+      "price": 0,
+      "quantity": 0,
       "available": true,
-      "selected": false
+      "selected": true,
+      "id": 2
+    },
+    {
+      "name": "erger",
+      "price": "1313",
+      "quantity": 0,
+      "available": false,
+      "selected": true,
+      "id": 3
     }
   ]
 }
